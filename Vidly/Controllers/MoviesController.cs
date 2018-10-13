@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
@@ -9,38 +10,93 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = GetMovies();
+            var movies = _context.Movies.Include( m => m.Genre ).ToList();
 
             return View(movies);
         }
 
         public ActionResult Details(int? id)
         {
-
-            if (id == null)
+            try
             {
-                return Content("nothing");
-            }
+                var movieQuery = _context.Movies;
 
-            var movie = GetMovies().SingleOrDefault(c => c.Id == id);
-            if(movie == null)
+                id = ValidateIntId(id, movieQuery);
+
+                var movie = movieQuery.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+                return View(movie);
+            }
+            catch (NullReferenceException)
             {
                 return HttpNotFound();
             }
-
-            return View(movie);
         }
 
-        private IEnumerable<Movie> GetMovies()
+        #region Handling of bad Ids
+        //
+        // This region changes the page to the nearest value if no such id exists
+        //
+        private int ValidateIntId(int? id, IQueryable<Movie> queryable)
         {
-            return new List<Movie>
+            id = id.GetValueOrDefault();
+            var movie = queryable.ToList().LastOrDefault();
+
+            if (movie != null)
             {
-                new Movie{Id = 1, Name = "Shrek"},
-                new Movie{Id = 2, Name = "Shrek 2"}
-            };
+                if (id >= movie.Id)
+                {
+                    return FindLastIndex(id, queryable);
+                }
+                else
+                {
+                    return FindNextIndex(id, queryable);
+                }
+            }
+            else
+            {
+                throw new NullReferenceException("Movie Query found no movies");
+            }
         }
+        
+        private int FindNextIndex(int? id, IQueryable<Movie> queryable)
+        {
+            if(queryable.SingleOrDefault(q=> q.Id == id) != null)
+            {
+                return (int)id;
+            }
+            else
+            {
+                return FindNextIndex(id + 1, queryable);
+            } 
+        }
+
+        private int FindLastIndex(int? id, IQueryable<Movie> queryable)
+        {
+            if (queryable.SingleOrDefault(q => q.Id == id) != null)
+            {
+                return (int)id;
+            }
+            else
+            {
+                return FindLastIndex(id - 1, queryable);
+            }
+        }
+        #endregion
     }
 }

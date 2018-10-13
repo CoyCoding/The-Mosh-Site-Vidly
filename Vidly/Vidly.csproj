@@ -236,10 +236,6 @@
     <Compile Include="Migrations\201810130415347_AddBirthdateToCustomer.Designer.cs">
       <DependentUpon>201810130415347_AddBirthdateToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810130508158_PopulateGenre.cs" />
-    <Compile Include="Migrations\201810130508158_PopulateGenre.Designer.cs">
-      <DependentUpon>201810130508158_PopulateGenre.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201810130532490_DropMovie.cs" />
     <Compile Include="Migrations\201810130532490_DropMovie.Designer.cs">
       <DependentUpon>201810130532490_DropMovie.cs</DependentUpon>
@@ -255,6 +251,26 @@
     <Compile Include="Migrations\201810130612554_InitialModel2.cs" />
     <Compile Include="Migrations\201810130612554_InitialModel2.Designer.cs">
       <DependentUpon>201810130612554_InitialModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131846079_InitialModels.cs" />
+    <Compile Include="Migrations\201810131846079_InitialModels.Designer.cs">
+      <DependentUpon>201810131846079_InitialModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131854387_PopulateGenre.cs" />
+    <Compile Include="Migrations\201810131854387_PopulateGenre.Designer.cs">
+      <DependentUpon>201810131854387_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131902566_DropModels.cs" />
+    <Compile Include="Migrations\201810131902566_DropModels.Designer.cs">
+      <DependentUpon>201810131902566_DropModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131904053_AddMovieModel.cs" />
+    <Compile Include="Migrations\201810131904053_AddMovieModel.Designer.cs">
+      <DependentUpon>201810131904053_AddMovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131912250_PopulateGenre1.cs" />
+    <Compile Include="Migrations\201810131912250_PopulateGenre1.Designer.cs">
+      <DependentUpon>201810131912250_PopulateGenre1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -411,9 +427,6 @@
     <EmbeddedResource Include="Migrations\201810130415347_AddBirthdateToCustomer.resx">
       <DependentUpon>201810130415347_AddBirthdateToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810130508158_PopulateGenre.resx">
-      <DependentUpon>201810130508158_PopulateGenre.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810130532490_DropMovie.resx">
       <DependentUpon>201810130532490_DropMovie.cs</DependentUpon>
     </EmbeddedResource>
@@ -425,6 +438,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810130612554_InitialModel2.resx">
       <DependentUpon>201810130612554_InitialModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131846079_InitialModels.resx">
+      <DependentUpon>201810131846079_InitialModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131854387_PopulateGenre.resx">
+      <DependentUpon>201810131854387_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131902566_DropModels.resx">
+      <DependentUpon>201810131902566_DropModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131904053_AddMovieModel.resx">
+      <DependentUpon>201810131904053_AddMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131912250_PopulateGenre1.resx">
+      <DependentUpon>201810131912250_PopulateGenre1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
