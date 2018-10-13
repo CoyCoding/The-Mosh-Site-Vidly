@@ -1,4 +1,6 @@
 ﻿@model  IEnumerable<Vidly.Models.Customer>
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +18,11 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <td>@headerText</td>
+                    <th>@headerText</th>
+                    @if (headerText == "Customers")
+                    {
+                        <th>Membership Type</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -24,10 +30,10 @@
                 {
                     <tr>
                         <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                        <td>@customer.MembershipType.Name</td>   
                     </tr>
                 }
-                    
-                </tbody>
+            </tbody>
         </table>
     }
 }
