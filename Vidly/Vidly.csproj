@@ -236,9 +236,25 @@
     <Compile Include="Migrations\201810130415347_AddBirthdateToCustomer.Designer.cs">
       <DependentUpon>201810130415347_AddBirthdateToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810130502366_InitialModel1.cs" />
-    <Compile Include="Migrations\201810130502366_InitialModel1.Designer.cs">
-      <DependentUpon>201810130502366_InitialModel1.cs</DependentUpon>
+    <Compile Include="Migrations\201810130508158_PopulateGenre.cs" />
+    <Compile Include="Migrations\201810130508158_PopulateGenre.Designer.cs">
+      <DependentUpon>201810130508158_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130532490_DropMovie.cs" />
+    <Compile Include="Migrations\201810130532490_DropMovie.Designer.cs">
+      <DependentUpon>201810130532490_DropMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130557214_poo.cs" />
+    <Compile Include="Migrations\201810130557214_poo.Designer.cs">
+      <DependentUpon>201810130557214_poo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130608342_InitialModel1.cs" />
+    <Compile Include="Migrations\201810130608342_InitialModel1.Designer.cs">
+      <DependentUpon>201810130608342_InitialModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130612554_InitialModel2.cs" />
+    <Compile Include="Migrations\201810130612554_InitialModel2.Designer.cs">
+      <DependentUpon>201810130612554_InitialModel2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -395,8 +411,20 @@
     <EmbeddedResource Include="Migrations\201810130415347_AddBirthdateToCustomer.resx">
       <DependentUpon>201810130415347_AddBirthdateToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810130502366_InitialModel1.resx">
-      <DependentUpon>201810130502366_InitialModel1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810130508158_PopulateGenre.resx">
+      <DependentUpon>201810130508158_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130532490_DropMovie.resx">
+      <DependentUpon>201810130532490_DropMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130557214_poo.resx">
+      <DependentUpon>201810130557214_poo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130608342_InitialModel1.resx">
+      <DependentUpon>201810130608342_InitialModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130612554_InitialModel2.resx">
+      <DependentUpon>201810130612554_InitialModel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
