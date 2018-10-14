@@ -34,7 +34,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
             if(customer.Id == 0)
             {
@@ -51,7 +51,6 @@ namespace Vidly.Controllers
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
-            _context.Customers.Add(customer);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");

@@ -65,9 +65,23 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Movie movie)
+        public ActionResult Save(Movie movie)
         {
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var IDbMovie = _context.Movies.Single(m => m.Id == movie.Id);
 
+                IDbMovie.Id = movie.Id;
+                IDbMovie.Name = movie.Name;
+                IDbMovie.GenreId = movie.GenreId;
+                IDbMovie.ReleaseDate = movie.ReleaseDate;
+            }
+
+            _context.SaveChanges();
 
             return View();
         }
