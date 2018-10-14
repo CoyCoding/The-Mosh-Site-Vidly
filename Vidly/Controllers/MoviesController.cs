@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -27,7 +28,6 @@ namespace Vidly.Controllers
             return View();
         }
 
-        // GET: Movies
         public ActionResult Index()
         {
             var movies = _context.Movies.Include( m => m.Genre ).ToList();
@@ -53,9 +53,27 @@ namespace Vidly.Controllers
             }
         }
 
+        public ActionResult MovieForm()
+        {
+            var genres = _context.Genres.ToList();
+            var movieViewModel = new MovieViewModel
+            {
+                Genres = genres
+            };
+
+            return View(movieViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Movie movie)
+        {
+            return View();
+        }
+
         #region Handling of bad Ids
         //
         // This region changes the page to the nearest value if no such id exists
+        // This section is no longer needed but left because this isn't production code
         //
         private int ValidateIntId(int? id, IQueryable<Movie> queryable)
         {
