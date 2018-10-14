@@ -83,7 +83,7 @@ namespace Vidly.Controllers
 
             _context.SaveChanges();
 
-            return View();
+            return View("Index", "Movie");
         }
 
         public ActionResult Edit(int id)
