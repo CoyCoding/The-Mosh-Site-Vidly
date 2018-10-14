@@ -67,7 +67,27 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Create(Movie movie)
         {
+
+
             return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            var movieViewModel = new MovieViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", movieViewModel);
         }
 
         #region Handling of bad Ids

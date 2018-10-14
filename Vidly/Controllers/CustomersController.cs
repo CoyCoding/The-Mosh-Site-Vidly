@@ -44,7 +44,8 @@ namespace Vidly.Controllers
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
 
-                //Automapper could help with this
+                // I would like to look into auto mapper
+                // The reason for single sets is to stop injection.
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
