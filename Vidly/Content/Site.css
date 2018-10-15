@@ -37,16 +37,21 @@ textarea {
     animation: glow 200ms ease-out alternate forwards 4;
 }
 
-.input-validation-error {
-    color: #495057;
-    background-color: #fff;
-    border-color: #a1d6f4;
-    outline: 0;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+
+
+
+
+@keyframes glow {
+    0% {
+        border-color: rgba(252, 3, 3, 0.82);
+        box-shadow: 0 0 5px rgba(252, 3, 3, 0.82), inset 0 0 5px rgba(252, 3, 3, 0.10);
+    }
+
+    100% {
+        border-color: rgba(255, 53, 53, 0.74);
+        box-shadow: 0 0 10px rgba(252, 3, 3,.6), inset 0 0 10px rgba(252, 3, 3,.4);
+    }
 }
-
-
 
 
 
