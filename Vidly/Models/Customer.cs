@@ -23,6 +23,23 @@ namespace Vidly.Models
         public byte MembershipTypeId { get; set; }
         
         [Display(Name = "Date of Birth")]
+        [MinAge18ForMember]
         public DateTime? Birthdate { get; set; }
+
+        public int? GetAge() {
+            int? age = null;
+            if (Birthdate != null)
+            {
+                age = DateTime.Now.Year - Birthdate.Value.Year;
+                if (age == 18)
+                {
+                    if (DateTime.Now.Month < Birthdate.Value.Month || (DateTime.Now.Month == Birthdate.Value.Month && DateTime.Now.Day < Birthdate.Value.Day))
+                    {
+                        age -= 1;
+                    }
+                }
+            }
+            return age;
+        }
     }
 }

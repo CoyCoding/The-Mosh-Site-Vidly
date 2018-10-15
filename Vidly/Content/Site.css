@@ -1,4 +1,6 @@
-﻿body {
+﻿
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -23,3 +25,34 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.field-validation-error {
+    color: rgb(251,123,123);
+}
+
+.input-validation-error {
+    border-color: rgba(221, 0, 0, 0.10);
+    box-shadow: 0 0 5px rgba(252, 3, 3, 0.3), inset 0 0 5px rgba(252, 3, 3, 0.10), 0 2px 0 rgba(199, 28, 34, 0.058);
+    outline: none;
+    animation: glow 200ms ease-out alternate forwards 4;
+}
+
+.input-validation-error {
+    color: #495057;
+    background-color: #fff;
+    border-color: #a1d6f4;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+}
+
+
+
+
+
+
+
+
+  
+
+

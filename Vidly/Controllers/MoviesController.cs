@@ -74,9 +74,17 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieViewModel
+                {
+
+                };
+            }
 
             if (movie.Id == 0)
             {
+                
                 movie.DateAdded = DateTime.UtcNow;
                 _context.Movies.Add(movie);
             }
