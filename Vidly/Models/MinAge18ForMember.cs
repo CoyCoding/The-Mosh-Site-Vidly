@@ -26,7 +26,7 @@ namespace Vidly.Models
             }
             
             
-            return (customer.GetAge() >= 18) ? ValidationResult.Success : new ValidationResult($"You must be 18 for a {customer.MembershipType.Name} membership.");
+            return (customer.GetAge() >= 18) ? ValidationResult.Success : new ValidationResult($"You must be 18 for a  membership.");
 
         }
     }
