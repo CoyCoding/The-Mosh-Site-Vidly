@@ -26,7 +26,7 @@
             <tbody>
                 @foreach (var movie in Model)
                 {
-                    <tr>
+                    <tr class="delete-row">
                         <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null) </td>
                         <td>@movie.Genre.Name</td>
                     </tr>

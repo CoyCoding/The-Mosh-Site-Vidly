@@ -15,13 +15,14 @@
     }
     else
     {
-        <table class="table table-bordered table-hover">
+        <table id="customer-table" class="table table-bordered table-hover">
             <thead>
-                <tr>
+                <tr >
                     <th>@headerText</th>
                     @if (headerText == "Customers")
                     {
                         <th>Membership Type</th>
+                        <th class="text-center">Delete</th>
                     }
                 </tr>
             </thead>
@@ -31,10 +32,46 @@
                     <tr>
                         <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                         <td>@customer.MembershipType.Name</td>   
+                        <td class="text-center">
+                            <button data-customer-name="@customer.Name" data-customer-id="@customer.Id" class="btn-link jq-delete">Delete</button>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     }
+}
+
+@section scripts
+{
+    <script>
+        //
+        // This script takes the current row's customer asks for comfirmation on deletion
+        // If deleted adds an animation class to the row and removes it after a delay.
+        //
+        $(document).ready(function () {
+            $("#customer-table .jq-delete").on("click", function () {
+                var customerName = $(this).attr("data-customer-name");
+                var customerId = $(this).attr("data-customer-id");
+                var button = $(this);
+
+                if (confirm("Confirm Deletetion of " + customerName)) {
+                    $.ajax({
+                        url: "/api/customers/" + customerId,
+
+                        //Leaving delete blank to continue testing
+
+                        method: "",
+                        success: function () {
+                            setTimeout(function () {
+                                button.parents("tr").remove();
+                            }, 1400);
+                            button.parents("tr").addClass("delete-row"); 
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 }
 

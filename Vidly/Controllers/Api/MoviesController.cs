@@ -79,7 +79,24 @@ namespace Vidly.Controllers.Api
             _db.SaveChanges();
 
             return Ok(movieDto);
+        }
 
+        //DELETE api/movies/1
+        [HttpDelete]
+        public IHttpActionResult DeleteMovie(int id)
+        {
+            var movieInDb = _db.Movies.SingleOrDefault(m => m.Id == id);
+
+            if(movieInDb == null)
+            {
+                return NotFound();
+            }
+
+            _db.Movies.Remove(movieInDb);
+            _db.SaveChanges();
+
+            var movieDto = Mapper.Map<Movie, MovieDto>(movieInDb);
+            return Ok(movieDto);
         }
     }
 }

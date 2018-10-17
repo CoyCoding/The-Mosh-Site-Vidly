@@ -88,7 +88,7 @@ namespace Vidly.Controllers.Api
 
             if(customerInDb == null)
             {
-                NotFound();
+                return NotFound();
             }
 
             _db.Customers.Remove(customerInDb);
