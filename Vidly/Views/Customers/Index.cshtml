@@ -50,6 +50,8 @@
         // If deleted adds an animation class to the row and removes it after a delay.
         //
         $(document).ready(function () {
+            $("#customer-table").DataTable();
+
             $("#customer-table").on("click", ".jq-delete", function () {
                 var customerName = $(this).attr("data-customer-name");
                 var customerId = $(this).attr("data-customer-id");
@@ -67,7 +69,7 @@
                                 setTimeout(function () {
                                     button.parents("tr").remove();
                                 }, 1400);
-                                button.parents("tr").addClass("delete-row").clone();
+                                button.parents("tr").addClass("delete-row");
                             }
                         });
                     }
