@@ -7,28 +7,30 @@
 }
 
 <h2>Customers</h2>
-
-        <table id="customer-table" class="table table-bordered table-hover">
-            <thead>
-                <tr >
-                    <th>Customers</th>
-                    <th>Membership Type</th>
-                    <th class="text-center">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-               @*@foreach (var customer in Model)
+<div class="">
+    <table  id="customer-table" class="table table-hover dt-responsive nowrap" style="width: 100%"  >
+        <thead class="thead-dark">
+            <tr>
+                <th>Customers</th>
+                <th>Membership Type</th>
+                <th class="text-center">Delete</th>
+            </tr>
+        </thead>
+        <tbody class="table-sm">
+            @*@foreach (var customer in Model)
                 {
                     <tr>
                         <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
-                        <td>@customer.MembershipType.Name</td>   
+                        <td>@customer.MembershipType.Name</td>
                         <td class="text-center">
                             <button data-customer-name="@customer.Name" data-customer-id="@customer.Id" class="btn-link jq-delete">Delete</button>
                         </td>
                     </tr>
-                }*@
-            </tbody>
-        </table>
+            }*@
+        </tbody>
+    </table>
+</div>
+        
     
 
 
@@ -40,7 +42,7 @@
         // If deleted adds an animation class to the row and removes it after a delay.
         //
         $(document).ready(function () {
-            $("#customer-table").DataTable({
+           var table = $("#customer-table").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -49,11 +51,11 @@
                     {
                         data: "name",
                         render: function (data, type, customer) {
-                            return "<a href='/customers/edit" + customer.id + "'>" + data + "</a>";
+                            return "<a href='/customers/edit/" + customer.id + "'>" + data + "</a>";
                         }
                     },
                     {
-                        data: "name"
+                        data: "membershipType.name"
                     },
                     {
                         data: "id",
@@ -61,12 +63,12 @@
                             return "<div class='text-center'>" +
                                 "<button data-customer-name='" + customer.name +
                                 "'data-customer-id='" + data +
-                                "'class='btn-link jq-delete'>Delete</button>" + "</div>"
+                                "'class='btn btn-link jq-delete'>Delete</button>" + "</div>"
                         }
                     }
                 ]
             });
-
+            
             $("#customer-table").on("click", ".jq-delete", function () {
                 var customerName = $(this).attr("data-customer-name");
                 var customerId = $(this).attr("data-customer-id");
@@ -77,14 +79,15 @@
                         $.ajax({
                             url: "/api/customers/" + customerId,
 
-                            //Leaving delete blank to continue testing
+                            // Leaving delete blank to continue testing
+                            // Replace with "" -> "DELETE" 
 
                             method: "",
                             success: function () {
                                 setTimeout(function () {
-                                    button.parents("tr").remove();
+                                    table.row(button.parents("tr")).remove().draw();
                                 }, 1400);
-                                button.parents("tr").addClass("delete-row");
+                                button.removeClass("jq-delete").parents("tr").addClass("delete-row");     
                             }
                         });
                     }

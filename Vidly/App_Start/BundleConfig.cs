@@ -12,6 +12,8 @@ namespace Vidly
                         "~/Scripts/jquery-{version}.js",                   
                         "~/Scripts/bootstrap4.js",
                         "~/Scripts/bootbox.js",
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/DataTables/responsive.bootstrap4.js",
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap4.js"));
 
