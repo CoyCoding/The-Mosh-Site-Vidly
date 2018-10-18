@@ -7,27 +7,17 @@
 }
 
 <h2>Customers</h2>
-@{ 
-    var headerText = "Customers";
-    if (!Model.Any())
-    {
-        headerText = "No Customers";
-    }
-    else
-    {
+
         <table id="customer-table" class="table table-bordered table-hover">
             <thead>
                 <tr >
-                    <th>@headerText</th>
-                    @if (headerText == "Customers")
-                    {
-                        <th>Membership Type</th>
-                        <th class="text-center">Delete</th>
-                    }
+                    <th>Customers</th>
+                    <th>Membership Type</th>
+                    <th class="text-center">Delete</th>
                 </tr>
             </thead>
             <tbody>
-               @foreach (var customer in Model)
+               @*@foreach (var customer in Model)
                 {
                     <tr>
                         <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
@@ -36,11 +26,11 @@
                             <button data-customer-name="@customer.Name" data-customer-id="@customer.Id" class="btn-link jq-delete">Delete</button>
                         </td>
                     </tr>
-                }
+                }*@
             </tbody>
         </table>
-    }
-}
+    
+
 
 @section scripts
 {
@@ -50,7 +40,32 @@
         // If deleted adds an animation class to the row and removes it after a delay.
         //
         $(document).ready(function () {
-            $("#customer-table").DataTable();
+            $("#customer-table").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit" + customer.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, customer) {
+                            return "<div class='text-center'>" +
+                                "<button data-customer-name='" + customer.name +
+                                "'data-customer-id='" + data +
+                                "'class='btn-link jq-delete'>Delete</button>" + "</div>"
+                        }
+                    }
+                ]
+            });
 
             $("#customer-table").on("click", ".jq-delete", function () {
                 var customerName = $(this).attr("data-customer-name");
