@@ -1,8 +1,11 @@
-﻿<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+﻿
+
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+    <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-       
+
         @Html.ActionLink("Vidly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
 
@@ -12,4 +15,6 @@
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
+    </div>
 </nav>
+

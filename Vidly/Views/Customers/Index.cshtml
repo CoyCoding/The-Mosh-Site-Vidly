@@ -50,26 +50,28 @@
         // If deleted adds an animation class to the row and removes it after a delay.
         //
         $(document).ready(function () {
-            $("#customer-table .jq-delete").on("click", function () {
+            $("#customer-table").on("click", ".jq-delete", function () {
                 var customerName = $(this).attr("data-customer-name");
                 var customerId = $(this).attr("data-customer-id");
                 var button = $(this);
 
-                if (confirm("Confirm Deletetion of " + customerName)) {
-                    $.ajax({
-                        url: "/api/customers/" + customerId,
+                bootbox.confirm("Confirm deletion of " + customerName, function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + customerId,
 
-                        //Leaving delete blank to continue testing
+                            //Leaving delete blank to continue testing
 
-                        method: "",
-                        success: function () {
-                            setTimeout(function () {
-                                button.parents("tr").remove();
-                            }, 1400);
-                            button.parents("tr").addClass("delete-row"); 
-                        }
-                    });
-                }
+                            method: "",
+                            success: function () {
+                                setTimeout(function () {
+                                    button.parents("tr").remove();
+                                }, 1400);
+                                button.parents("tr").addClass("delete-row").clone();
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
