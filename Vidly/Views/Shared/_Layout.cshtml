@@ -10,8 +10,20 @@
 </head>
     @Html.Partial("_NavBar")
     <body>
-        <div class="container body-content">
-            @RenderBody()
+        <header class="masthead" style="min-height: 532px; background-image: url(../../Content/Img/palms.png)">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div  style="text-align: center;  padding: 200px 0 150px; color: rgba(255, 255, 255, 0.98);">
+                            <h1 class="site-heading"style="color: rgba(255, 255, 255, 0.98);">Palm Theaters</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div >
+            @RenderBody();
             <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - Vidly</p>
@@ -23,3 +35,5 @@
         @RenderSection("scripts", required: false)
     </body>
 </html>
+
+

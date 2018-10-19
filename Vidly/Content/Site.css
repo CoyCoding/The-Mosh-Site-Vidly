@@ -11,7 +11,30 @@ body {
     padding-right: 15px;
     padding-top: 2rem;
 }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 81, 255, 0.30);
+    opacity: .3;
+}
 
+.site-heading {
+    -webkit-text-stroke: 1px black;
+    color: white;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.masthead {
+    margin-bottom: 50px;
+    background: no-repeat scroll left;
+    background-color: #868e96;
+    background-attachment: unset;
+    position: relative;
+    background-size: cover;
+
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -80,6 +103,7 @@ textarea {
         box-shadow: 0 0 10px rgba(252, 3, 3,.6), inset 0 0 10px rgba(252, 3, 3,.4);
     }
 }
+
 
 
 
