@@ -10,9 +10,10 @@
 </head>
     @Html.Partial("_NavBar")
     <body>
-        <header class="masthead" style="min-height: 532px; background-image: url(../../Content/Img/palms.png)">
-            <div class="overlay"></div>
-            <div class="container">
+        <div style="height: 600px; width: auto; border-bottom: 5px solid black;">
+            <header class="masthead">
+                <div class="overlay"></div>
+                @*<div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-10 mx-auto">
                         <div  style="text-align: center;  padding: 200px 0 150px; color: rgba(255, 255, 255, 0.98);">
@@ -20,13 +21,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </div>*@
+            </header>
+        </div>
         <div >
             @RenderBody();
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - Vidly</p>
+                <p>&copy; @DateTime.Now.Year - Palms</p>
             </footer>
         </div>
 

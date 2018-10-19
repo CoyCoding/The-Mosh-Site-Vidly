@@ -3,6 +3,8 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url(../Content/Img/backgroundcloud.png);
+    background-size: cover;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -19,6 +21,8 @@ body {
     width: 100%;
     background-color: rgba(0, 81, 255, 0.30);
     opacity: .3;
+  
+    
 }
 
 .site-heading {
@@ -27,13 +31,14 @@ body {
     text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .masthead {
-    margin-bottom: 50px;
-    background: no-repeat scroll left;
+    margin-bottom: 0px;
+    background: no-repeat scroll left fixed;
     background-color: #868e96;
-    background-attachment: unset;
     position: relative;
     background-size: cover;
-
+    min-height: 100%;
+    background-image: url(../../Content/Img/palmslong.png);
+    box-shadow: black 0 -10px 50px inset;
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
