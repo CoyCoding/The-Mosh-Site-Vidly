@@ -20,9 +20,7 @@ body {
     height: 100%;
     width: 100%;
     background-color: rgba(0, 81, 255, 0.30);
-    opacity: .3;
-  
-    
+    opacity: .3; 
 }
 
 .site-heading {
@@ -38,7 +36,10 @@ body {
     background-size: cover;
     min-height: 100%;
     background-image: url(../../Content/Img/palmslong.png);
-    box-shadow: black 0 -10px 50px inset;
+    /*//box-shadow: black 0 -10px 50px inset;*/
+    -moz-box-shadow: inset 0 0 200px #000000;
+    -webkit-box-shadow: inset 0 0 200px #000000;
+    box-shadow: inset 0 0 200px #000000;
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

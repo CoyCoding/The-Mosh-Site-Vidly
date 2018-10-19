@@ -19,17 +19,7 @@
                 </tr>
             </thead>
             <tbody  class="table-sm">
-                @*@foreach (var movie in Model)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null) </td>
-                        <td>@movie.Genre.Name</td>
-                        <td>
-                            <button data-movie-id="@movie.Id" data-movie-name="@movie.Name">Delete</button>
-                        </td>
-                        
-                    </tr>
-                }*@
+
             </tbody>
         </table>
  
