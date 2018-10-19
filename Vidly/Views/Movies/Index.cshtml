@@ -7,31 +7,94 @@
 
 <h2>Movies</h2>
 
-@Html.ActionLink("Add Movie", "New", "Movies", null, new { @class = "btn btn-primary form-group"} )
-@{
-    var headerText = "Movie";
-    if (!Model.Any())
-    {
-        headerText = "We are out of movies";
-    }
-    else
-    {
-        <table class="table table-bordered table-hover">
+@Html.ActionLink("Add Movie", "New", "Movies", null, new { @class = "btn btn-primary form-group" })
+
+
+        <table id="movie-table" class="table table-bordered table-hover dt-responsive nowrap" style="width: 100%" >
             <thead>
                 <tr>
-                    <th>@headerText</th>
+                    <th>Movie</th>
                     <th>Genre</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var movie in Model)
+            <tbody  class="table-sm">
+                @*@foreach (var movie in Model)
                 {
                     <tr>
                         <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null) </td>
                         <td>@movie.Genre.Name</td>
+                        <td>
+                            <button data-movie-id="@movie.Id" data-movie-name="@movie.Name">Delete</button>
+                        </td>
+                        
                     </tr>
-                }
+                }*@
             </tbody>
         </table>
-    }
+ 
+
+
+@section scripts
+{
+    <script>
+        //
+        // This script takes the current row's movie asks for comfirmation on deletion
+        // If deleted adds an animation class to the row and removes it after a delay.
+        //
+        $(document).ready(function () {
+           var table = $("#movie-table").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, movie) {
+                            return "<a href='/customers/edit/" + movie.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, movie) {
+                            return "<div class='text-center'>" +
+                                "<button data-movie-name='" + movie.name +
+                                "'data-movie-id='" + data +
+                                "'class='btn btn-link jq-delete'>Delete</button>" + "</div>"
+                        }
+                    }
+                ]
+            });
+
+            $("#movie-table").on("click", ".jq-delete", function () {
+                var movieName = $(this).attr("data-movie-name");
+                var movieId = $(this).attr("data-movie-id");
+                var button = $(this);
+
+                bootbox.confirm("Confirm deletion of " + movieName, function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/movies/" + movieId,
+
+                            // Leaving delete blank to continue testing
+                            // Replace with "" -> "DELETE"
+
+                            method: "",
+                            success: function () {
+                                setTimeout(function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }, 1400);
+                                button.removeClass("jq-delete").parents("tr").addClass("delete-row");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
+
