@@ -1,6 +1,5 @@
 ﻿@model Vidly.ViewModels.CustomerViewModel
 @{
-    var selectedValue = "";
     ViewBag.Title = "CustomerFrom";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -25,7 +24,7 @@
 
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, 
-        new SelectList(Model.MembershipTypes, "Id", "Name", selectedValue), "Select Memebership Type", 
+        new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Memebership Type", 
         new { @class = "form-control", @id = "SelectedID", onChange = "UpdateMembership()" })
 
         @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
@@ -42,10 +41,5 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
 <script>
-    function UpdateMembership() {
-        var selectedMembershipId = document.getElementById("SelectedID").Name;
-
-
-    }
     </script>
 }

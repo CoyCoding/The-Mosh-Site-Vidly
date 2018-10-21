@@ -24,6 +24,27 @@ namespace Vidly.Controllers
             _db.Dispose();   
         }
 
+        public ActionResult CustomerForm()
+        {
+            var membershipTypes = _db.MembershipTypes.ToList();
+            var customerViewModel = new CustomerViewModel
+            {
+                Customer = new Customer { MembershipType = new MembershipType() },
+                MembershipTypes = membershipTypes
+            };
+            return View(customerViewModel);
+        }
+
+        public ActionResult Index()
+        {
+            if (User.IsInRole(RoleName.CanManageMovies))
+            {
+                return View();
+            }
+            return View("PublicIndex");
+        }
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var membershipTypes = _db.MembershipTypes.ToList();
@@ -35,17 +56,6 @@ namespace Vidly.Controllers
             };
 
             return View("CustomerForm", viewModel);
-        }
-
-        public ActionResult CustomerForm()
-        {
-            var membershipTypes = _db.MembershipTypes.ToList();
-            var customerViewModel = new CustomerViewModel
-            {
-                Customer = new Customer { MembershipType = new MembershipType() },
-                MembershipTypes = membershipTypes
-            };
-            return View(customerViewModel);
         }
 
         [HttpPost]
@@ -83,11 +93,6 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Details(int? id)
         {
             if(id == null)
@@ -99,6 +104,7 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var customer = _db.Customers.Include(c => c.MembershipType).SingleOrDefault( c => c.Id == id );

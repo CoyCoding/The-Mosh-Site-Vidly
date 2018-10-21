@@ -1,0 +1,64 @@
+﻿@model  IEnumerable<Vidly.Models.Customer>
+
+
+@{
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+<div class="">
+    <table id="customer-table" class="table table-bordered table-hover" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Customers</th>
+                <th style="white-space: normal !important">Membership Type</th>
+                <th style="text-align: center; width: 30%">Subscribed to Newsletter</th>
+            </tr>
+        </thead>
+        <tbody class="table-sm"></tbody>
+    </table>
+</div>
+
+
+
+
+@section scripts
+{
+    <script>
+        //
+        // This script takes the current row's customer asks for comfirmation on deletion
+        // If deleted adds an animation class to the row and removes it after a delay.
+        //
+        $(document).ready(function () {
+            var table = $("#customer-table").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        //render: function (data, type, customer) {
+                        //    return "<a href='/customers/edit/" + customer.id + "'>" + data + "</a>";
+                        //}
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "isSubscribedToNewsletter",
+                        render: function (data, type, customer) {
+                            if (customer.isSubscribedToNewsletter) {
+                                return "<div style='text-align: center'><span class='fa-stack fa-lg'><i style='color: green' class='fa fa-square fa-stack-2x' ></i><i style='color: white' class='fa fa-check-circle fa-stack-2x'></i></span ></th ><div>";
+                            }
+                            return "<div style='text-align: center'><span class='fa-stack fa-lg'><i style='color: red' class='fa fa-square fa-stack-2x' ></i><i style='color: white' class='fa fa-times-circle fa-stack-2x'></i></span ></th ><div>";
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}
+
