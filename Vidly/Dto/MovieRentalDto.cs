@@ -7,7 +7,7 @@ namespace Vidly.Dto
 {
     public class MovieRentalDto
     {
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
 
         public List<int> MovieIds { get; set; }
     }

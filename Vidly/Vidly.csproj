@@ -310,6 +310,14 @@
     <Compile Include="Migrations\201810200044066_AddedDriversLicenseToAppUser.Designer.cs">
       <DependentUpon>201810200044066_AddedDriversLicenseToAppUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810220406286_AddRentalInfo.cs" />
+    <Compile Include="Migrations\201810220406286_AddRentalInfo.Designer.cs">
+      <DependentUpon>201810220406286_AddRentalInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810220434325_AddedQuantityAvailableToMovie.cs" />
+    <Compile Include="Migrations\201810220434325_AddedQuantityAvailableToMovie.Designer.cs">
+      <DependentUpon>201810220434325_AddedQuantityAvailableToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -319,6 +327,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\MinAge18ForMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\RentalInfo.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -832,6 +841,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810200044066_AddedDriversLicenseToAppUser.resx">
       <DependentUpon>201810200044066_AddedDriversLicenseToAppUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810220406286_AddRentalInfo.resx">
+      <DependentUpon>201810220406286_AddRentalInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810220434325_AddedQuantityAvailableToMovie.resx">
+      <DependentUpon>201810220434325_AddedQuantityAvailableToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
