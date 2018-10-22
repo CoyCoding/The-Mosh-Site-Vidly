@@ -37,6 +37,7 @@ namespace Vidly.Controllers
             return View("MovieForm", movieViewModel);
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             if (User.IsInRole(RoleName.CanManageMovies))
