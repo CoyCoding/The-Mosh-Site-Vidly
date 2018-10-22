@@ -64,6 +64,7 @@ namespace Vidly.Controllers
             }
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult MovieForm()
         {
             var genres = _db.Genres.ToList();
@@ -108,6 +109,8 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _db.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);

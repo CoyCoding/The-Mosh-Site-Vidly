@@ -44,7 +44,6 @@ namespace Vidly.Controllers
             return View("PublicIndex");
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var membershipTypes = _db.MembershipTypes.ToList();
