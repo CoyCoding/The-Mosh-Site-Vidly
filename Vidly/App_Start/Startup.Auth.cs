@@ -50,13 +50,7 @@ namespace Vidly
             //    clientId: "",
             //    clientSecret: "");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "Uc5nJlkCRIG4kb7ixUEfwog8V",
-               consumerSecret: " ");
 
-            app.UseFacebookAuthentication(
-               appId: "541465352947760",
-               appSecret: "");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
