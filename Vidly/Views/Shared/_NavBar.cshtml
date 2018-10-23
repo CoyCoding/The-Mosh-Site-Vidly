@@ -1,6 +1,6 @@
 ﻿
 
-<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark" style="box-shadow: black 0 3px 50px ">
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -12,6 +12,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">@Html.ActionLink("Customers", "Index", "Customers", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("New Rental", "NewRental", "MovieRental", null, new { @class = "nav-link" })</li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
