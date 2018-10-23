@@ -23,8 +23,8 @@ namespace Vidly.Controllers.Api
         //GET api/movies
         public IEnumerable<MovieDto> GetMovies(string query = null)
         {
+
             var moviesQuery = _db.Movies
-              .Include(m => m.Genre)
               .Include(m => m.Genre)
               .Where(m => m.QuantityAvailable > 0);
 
