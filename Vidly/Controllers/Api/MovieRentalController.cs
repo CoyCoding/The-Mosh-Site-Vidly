@@ -19,15 +19,15 @@ namespace Vidly.Controllers.Api
             _db = new ApplicationDbContext();
         }
 
+        //public IHttpActionResult GetMovieRentals()
+        //{
+        //    var movieRentals = _db.RentalInfos.Include(ri => ri.Movie).Include(ri => ri.Customer).ToList();
 
-        public IHttpActionResult GetMovieRentals()
-        {
-            var movieRentals = _db.RentalInfos.Include(ri => ri.Movie).Include(ri => ri.Customer).ToList();
-
-            return Ok(movieRentals);
-        }
+        //    return Ok(movieRentals);
+        //}
 
         [HttpPost]
+        //[Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateMovieRental(MovieRentalDto movieRental)
         {
             var customer = _db.Customers.SingleOrDefault(c => c.Id == movieRental.CustomerId);
