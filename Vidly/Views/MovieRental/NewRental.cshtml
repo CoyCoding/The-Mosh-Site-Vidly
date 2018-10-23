@@ -38,11 +38,12 @@
 
         $('#customer').typeahead(
             {
-                minLength: 3,
+                minLength: 1,
                 highlight: true
             }, {
                 name: 'customer',
                 display: 'name',
+                limit: 10,
                 source: customers
             }).on("typeahead:select", function (e, customer) {
                 customerVM.customerId = customer.id;
@@ -62,13 +63,14 @@
 
         $('#movie').typeahead(
             {
-                minLength: 3,
+                minLength: 1,
                 highlight: true
             }, {
             name: 'movies',
-            display: 'name',
+                display: 'name',
+                limit: 10,
             source: movies
-            }).on("", function (e, customer) {
+            }).on("typeahead:select", function (e, customer) {
                 movieVM.movieId = movie.id;
             });
     });
