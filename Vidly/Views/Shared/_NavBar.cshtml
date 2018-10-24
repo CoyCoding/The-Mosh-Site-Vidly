@@ -9,7 +9,7 @@
         @Html.ActionLink("Palms", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
 
-            <ul class="navbar-nav mr-auto">
+            <ul class="nav navbar-nav mr-auto">
                 @if (User.IsInRole(RoleName.CanManageMovies))
                 {
                     <li class="nav-item">@Html.ActionLink("New Rental", "NewRental", "MovieRental", null, new { @class = "nav-link" })</li>

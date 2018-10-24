@@ -7,15 +7,26 @@
 <h2>New Rental</h2>
 
 <form>
-    <div class="form-group" >
+    <div class="form-group">
         <label>Customer</label>
-        <input id="customer" type="text" value="" class="form-control" /></div>
+        <div class="tt-container">
+            <input id="customer" type="text" value="" class="form-control" />
+        </div>
+    </div>
     <div class="form-group">
         <lable>Movie</lable>
-        <input id="movie" type="text" value="" class="form-control"/>
+        <div class="tt-container">
+            <input id="movie" type="text" value="" class="form-control" />
+        </div>
     </div>
 
+    <div class="col-md-4" > 
+        <ul id="movies" class="form-group"></ul>
+    </div>
+
+
     <button class="btn btn-primary">Submit</button>
+
 </form>
 
 @section scripts
@@ -25,7 +36,9 @@
 
     $(document).ready(function () {
 
-        var customerVM = {};
+        var rentalVM = {
+            movieIds: []
+        };
 
         var customers = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -46,11 +59,11 @@
                 limit: 10,
                 source: customers
             }).on("typeahead:select", function (e, customer) {
-                customerVM.customerId = customer.id;
+                rentalVM.customerId = customer.id;
             });
 
 
-        var movieVM = {};
+        
 
         var movies = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -66,12 +79,17 @@
                 minLength: 1,
                 highlight: true
             }, {
-            name: 'movies',
-                display: 'name',
+
                 limit: 10,
+                name: 'movies',
+                display: 'name',
+               
             source: movies
-            }).on("typeahead:select", function (e, customer) {
-                movieVM.movieId = movie.id;
+            }).on("typeahead:select", function (e, movie) {
+                //React should be used for DOM edits
+                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
+                $("#movies").typeahead("val", "");
+                rentalVM.movieIds.push(movie.id);
             });
     });
 </script>    
