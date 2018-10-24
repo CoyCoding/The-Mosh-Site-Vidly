@@ -10,7 +10,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" value="" class="form-control" />
+            <input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
         </div>
     </div>
     <div class="form-group">
@@ -20,11 +20,17 @@
         </div>
     </div>
 
-    <div class="col-md-4" > 
-        <ul id="movies" class="form-group"></ul>
-    </div>
-
-
+    <table id="movies-table" class="table table-bordered table-hover nowrap table-responsive-sm" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Movies</th>
+                <th style="white-space: normal !important">Customer</th>
+                <th class="text-center">Remove</th>
+            </tr>
+        </thead>
+        <tbody class="table-sm">
+        </tbody>
+    </table>
     <button class="btn btn-primary">Submit</button>
 
 </form>
@@ -32,81 +38,107 @@
 @section scripts
 {
 
-<script>
+    <script>
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        var rentalVM = {
-            movieIds: []
-        };
+            var rentalVM = {
+                movieIds: []
+            };
 
-        var customers = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: {
-                url: '/api/customers?query=%QUERY',
-                wildcard: '%QUERY'
-            }
-        });
-
-        $('#customer').typeahead(
-            {
-                minLength: 1,
-                highlight: true
-            }, {
-                name: 'customer',
-                display: 'name',
-                limit: 10,
-                source: customers
-            }).on("typeahead:select", function (e, customer) {
-                rentalVM.customerId = customer.id;
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/customers?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
             });
 
-
-        
-
-        var movies = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: {
-                url: '/api/movies?query=%QUERY',
-                wildcard: '%QUERY'
-            }
-        });
-
-        $('#movie').typeahead(
-            {
-                minLength: 1,
-                highlight: true
-            }, {
-
-                limit: 10,
-                name: 'movies',
-                display: 'name',
-               
-            source: movies
-            }).on("typeahead:select", function (e, movie) {
-                //React should be used for DOM edits
-                $("#movies").append("<li class='list-group-item'>" + movie.name + "<button>remove</button></li>");
-                $("#movies").typeahead("val", "");
-                rentalVM.movieIds.push(movie.id);
-            });
-        $("#newRental").submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/api/movieRental",
-                method: "post",
-                data: rentalVM
-            })
-
-                .done(function () {
-                    toastr.success("Rentals successfully posted")
-                })
-                .fail(function () {
-                    toastr.error("nope")
+            $('#customer').typeahead(
+                {
+                    minLength: 1,
+                    highlight: true
+                }, {
+                    name: 'customer',
+                    display: 'name',
+                    limit: 10,
+                    source: customers
+                }).on("typeahead:select", function (e, customer) {
+                    rentalVM.customerId = customer.id;
+                    rentalVM.customerName = customer.name;
+                    console.log(customer.name);
                 });
+
+
+
+
+            var movies = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/movies?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#movie').typeahead(
+                {
+                    minLength: 1,
+                    highlight: true
+                }, {
+
+                    limit: 10,
+                    name: 'movies',
+                    display: 'name',
+
+                    source: movies
+                }).on("typeahead:select", function (e, movie) {
+                    //React should be used for DOM edits
+                    $("#movies-table").append("<tr><td>" + movie.name + "</td>" +
+                                              "<td> " + rentalVM.customerName + "</td >" + 
+                                              "<td> <button type='button' class='btn btn-link jq-delete' > Remove</button ></td ></tr> ");
+                    $("#movies-table").typeahead("val", "");
+                    rentalVM.movieIds.push(movie.id);
+                });
+
+            $("#movies-table").on("click", ".jq-delete", function () {
+                var table = $("#movies-table").DataTable;
+                var button = $(this);
+                bootbox.confirm("Confirm deletion of " + rentalVM.customerName, function (result) {
+                    if (result) {
+                                setTimeout(function () {
+                                    $("#movies-data").row(button.parents("tr")).remove().draw();
+                                }, 1400);
+                                button.removeClass("jq-delete").parents("tr").addClass("delete-row");
+                    } 
+                        });
+            });
+
+            
+            $.validator.addMethod("validCustomer", function () {
+                return rentalVM.customerId && rentalVM.customerId != 0;
+            }, "Please select vaild customer");
+
+            $("#newRental").validate({
+                submitHandler: function () {
+                    e.preventDefault();
+                    $.ajax({
+                        url: "/*/api/movieRental*/",
+                        method: "post",
+                        data: rentalVM
+                    })
+
+                        .done(function () {
+                            toastr.success("Rentals successfully posted")
+                        })
+                        .fail(function () {
+                            toastr.error("nope")
+                        });
+                }
+            });
         });
-    });
-</script>    
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
     
 }

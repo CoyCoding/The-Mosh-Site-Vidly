@@ -55,11 +55,12 @@ textarea {
     max-width: 280px;
 }
 
-.field-validation-error {
+.field-validation-error
+{
     color: rgb(251,123,123);
 }
 
-.input-validation-error {
+.input-validation-error{
     border-color: red;
     border-color: rgba(221, 0, 0, 0.10);
     box-shadow: 0 0 5px rgba(252, 3, 3, 0.3), inset 0 0 5px rgba(252, 3, 3, 0.10), 0 2px 0 rgba(199, 28, 34, 0.058);
